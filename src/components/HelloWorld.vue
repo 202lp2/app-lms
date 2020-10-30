@@ -4,7 +4,7 @@
     <p> 
       {{ msg2 }}
       {{ message }}
-  <input v-model="msg">
+  <input v-model="message">
 
 
     </p>
@@ -44,9 +44,9 @@ export default {
       console.log(path+payload);
     },
     editBook() {
-      console.log("edit ");
+      console.log("edit "+this.message);
+      
     },
-
   },
   created() {
     this.getBooks();
@@ -70,9 +70,7 @@ li {
 a {
   color: #42b983;
 }
-
 .hello {
 color: #42b983;
 }
-
 </style>
