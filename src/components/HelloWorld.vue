@@ -13,7 +13,7 @@
                           type="button"
                           class="btn btn-warning btn-sm"
                          
-                          @click="editBook()">
+                          @click="editBook('hola')">
                       Update
                   </button>
     
@@ -43,9 +43,9 @@ export default {
       const path = 'http://localhost:5001/books';
       console.log(path+payload);
     },
-    editBook() {
-      console.log("edit "+this.message);
-      
+    editBook(cad) {
+      console.log("edit "+cad+": "+this.message);
+
     },
   },
   created() {
