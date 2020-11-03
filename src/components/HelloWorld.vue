@@ -34,23 +34,25 @@ export default {
     
   },
   methods: {
-    getBooks() {
-      const path = 'Hola has create';
+    getBooks: function() {
+      const path = 'Hola has create con func';
       console.log(path);
         
     },
-    addBook(payload) {
+    addBook: function(payload) {
       const path = 'http://localhost:5001/books';
       console.log(path+payload);
     },
-    editBook(cad) {
+    editBook: function(cad) {
       console.log("edit "+cad+": "+this.message);
 
     },
   },
-  created() {
+
+  created: function() {
     this.getBooks();
-  },
+  }, 
+
 }
 </script>
 

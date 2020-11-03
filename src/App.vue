@@ -1,21 +1,19 @@
 <template>
   <div class="appx">
-    <p> HI </p>
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="hOLA "  msg2="hOLA2 " message="xxxx "/>
+
+  <p>
+    <!-- use router-link component for navigation. -->
+    <!-- specify the link by passing the `to` prop. -->
+    <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
+    <router-link to="/">Home</router-link>
+    <router-link to="/ping">Go to Ping</router-link>
+  </p>
+
+
+    <router-view/>
   </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
 
 <style>
 .appx {
