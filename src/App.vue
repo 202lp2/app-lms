@@ -7,6 +7,7 @@
     <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
     <router-link to="/">Home</router-link>
     <router-link to="/ping">Go to Ping</router-link>
+    <router-link to="/persons">Go to Persons</router-link>
   </p>
 
 

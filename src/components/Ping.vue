@@ -4,6 +4,8 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Ping',
   data: function() {
@@ -13,8 +15,15 @@ export default {
   },   
   methods: {
     getMessage: function() {
-      const path = 'Pong';
-      console.log(path);
+      const path = 'http://localhost:8085/v1/ping';
+      axios.get(path)
+        .then((res) => {
+          this.msg = res.data;
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+        });
     },
   },
   created: function() {
