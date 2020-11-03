@@ -1,8 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 //import Books from './components/Books.vue';
-//import Ping from './components/Ping.vue';
+import Ping from './components/Ping.vue';
 import HelloWorld from './components/HelloWorld.vue'
+
+
 Vue.use(Router);
 
 export default new Router({
@@ -14,6 +16,11 @@ export default new Router({
       name: 'HelloWorld',
       component: HelloWorld,
     },
-    
+    {
+      path: '/ping',
+      name: 'Ping',
+      component: Ping,
+    },
+
   ],
 });
