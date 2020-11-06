@@ -1,13 +1,16 @@
 <template>
-  <div class="hello">
+  <div class="container">
     
-    <p> 
-      {{ list }}
-    </p> 
-    <table class="table table-hover">
+     <div class="row">
+      <div class="col-sm-10">
+        <h1>Persons</h1>
+        <hr><br><br>
+        <alert :message=message v-if="showMessage"></alert>
+        <button type="button" class="btn btn-success btn-sm" v-on:click="nuevo()">Add Person</button>
+        <br><br>
+        <table class="table table-hover">
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">Name</th>
               <th scope="col">Age</th>
               <th></th>
@@ -15,31 +18,60 @@
           </thead>
           <tbody>
             <tr v-for="(d, index) in list" :key="index">
-              <td>{{ index+1 }}</td>
               <td>{{ d.Name }}</td>
               <td>{{ d.Age }}</td>
-              
-              
+
+              <td>
+                <div class="btn-group" role="group">
+                  <button
+                          type="button"
+                          class="btn btn-warning btn-sm"
+                          v-b-modal.book-update-modal
+                          @click="editBook(d)">
+                      Update
+                  </button>
+                  <button
+                          type="button"
+                          class="btn btn-danger btn-sm"
+                          @click="onDeleteBook(d)">
+                      Delete
+                  </button>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+    
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import Alert from './Alert.vue';
 
 export default {
   name: 'Person',
   data: function() {
     return {
-      list: ""
+      list: [],
+      message: '',
+      showMessage: false,
     }
   },   
-
+components: {
+    alert: Alert,
+  },
   methods: {
+    editar(id) {
+            this.$router.push('/editar/' + id);
+        },
+        nuevo() {
+            this.$router.push('/persons/form');
+        },
     getBooks: function() {
-      const path = 'http://localhost:8085/v1/persons';
+      const path = 'http://localhost:8081/v1/persons';
       axios.get(path)
         .then((res) => {
           this.list = res.data.r;
@@ -51,7 +83,7 @@ export default {
         
     },
     addBook: function(payload) {
-      const path = 'http://localhost:5001/books';
+      const path = 'http://localhost:8081/books';
       console.log(path+payload);
     },
     editBook: function(cad) {

@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import Person from './components/Person.vue';
 import Ping from './components/Ping.vue';
 import HelloWorld from './components/HelloWorld.vue'
-
+import PersonForm from './components/PersonForm.vue';
 
 Vue.use(Router);
 
@@ -25,6 +25,11 @@ export default new Router({
       path: '/persons',
       name: 'Person',
       component: Person,
+    },
+    {
+      path: '/persons/form',
+      name: 'PersonForm',
+      component: PersonForm,
     },
 
   ],
