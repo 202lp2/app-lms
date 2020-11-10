@@ -110,11 +110,29 @@ addBook(payload) {
       this.initForm();
     },
 
+    getPerson: function(id) {
+      const path = 'http://localhost:8081/v1/persons/'+id;
+      console.log(path);
+      axios.get(path)
+        .then((res) => {
+          this.d = res.data;
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+        });
+        
+    },
+
+
   },
 
   created: function() {
     this.d.ID = this.$route.params.id;
-    //this.getBooks();
+    if (this.d.ID>0) {
+      this.getPerson(this.d.ID);
+    }
+    
   }, 
 
 }

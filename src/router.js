@@ -33,7 +33,7 @@ export default new Router({
     },
     {
       path: '/persons/form/:id',
-      name: 'PersonForm',
+      name: 'PersonForme',
       component: PersonForm
   },
 
