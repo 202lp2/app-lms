@@ -165,8 +165,7 @@ addBook(payload) {
         });
     },
 
-
-
+    
   },
 
   created: function() {

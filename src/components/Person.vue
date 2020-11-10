@@ -82,13 +82,22 @@ components: {
         });
         
     },
-    addBookx: function(payload) {
-      const path = 'http://localhost:8081/books';
-      console.log(path+payload);
+    onDeleteBook(book) {
+      this.removeBook(book.ID);
     },
-    editBookx: function(cad) {
-      console.log("edit "+cad+": "+this.message);
-
+    removeBook(bookID) {
+      const path = `http://localhost:8081/v1/persons/${bookID}`;
+      axios.delete(path)
+        .then(() => {
+          this.getBooks();
+          this.message = 'Book removed!';
+          this.showMessage = true;
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          this.getBooks();
+        });
     },
   },
 
