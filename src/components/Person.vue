@@ -1,13 +1,15 @@
 <template>
   <div class="container">
-    
-     <div class="row">
+    <div class="row">
       <div class="col-sm-10">
         <h1>Persons</h1>
-        <hr><br><br>
-        <alert :message=message v-if="showMessage"></alert>
-        <button type="button" class="btn btn-success btn-sm" v-on:click="nuevo()">Add Person</button>
-        <br><br>
+        <hr />
+        <br /><br />
+        <alert :message="message" v-if="showMessage"></alert>
+        <button type="button" class="btn btn-success btn-sm" v-on:click="add()">
+          Add Person
+        </button>
+        <br /><br />
         <table class="table table-hover">
           <thead>
             <tr>
@@ -24,17 +26,18 @@
               <td>
                 <div class="btn-group" role="group">
                   <button
-                          type="button"
-                          class="btn btn-warning btn-sm"
-                          
-                          @click="editar(d.ID)">
-                      Update
+                    type="button"
+                    class="btn btn-warning btn-sm"
+                    @click="edit(d.ID)"
+                  >
+                    Update
                   </button>
                   <button
-                          type="button"
-                          class="btn btn-danger btn-sm"
-                          @click="onDeleteBook(d)">
-                      Delete
+                    type="button"
+                    class="btn btn-danger btn-sm"
+                    @click="onDelete(d)"
+                  >
+                    Delete
                   </button>
                 </div>
               </td>
@@ -43,69 +46,66 @@
         </table>
       </div>
     </div>
-    
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-import Alert from './Alert.vue';
+import axios from "axios";
+import Alert from "./Alert.vue";
 
 export default {
-  name: 'Person',
-  data: function() {
+  name: "Person",
+  data: function () {
     return {
       list: [],
-      message: '',
+      message: "",
       showMessage: false,
-    }
-  },   
-components: {
+    };
+  },
+  components: {
     alert: Alert,
   },
   methods: {
-    editar(id) {
-            this.$router.push('/persons/form/' + id);
-        },
-        nuevo() {
-            this.$router.push('/persons/form');
-        },
-    getBooks: function() {
-      const path = 'http://localhost:8081/v1/persons';
-      axios.get(path)
+    edit: function (id) {
+      this.$router.push("/persons/form/" + id);
+    },
+    add: function () {
+      this.$router.push("/persons/form");
+    },
+    getList: function () {
+      const path = "http://localhost:8081/v1/persons";
+      axios
+        .get(path)
         .then((res) => {
           this.list = res.data.r;
         })
         .catch((error) => {
-          // eslint-disable-next-line
           console.error(error);
         });
-        
     },
-    onDeleteBook(book) {
-      this.removeBook(book.ID);
+    onDelete: function (d) {
+      this.delete(d.ID);
     },
-    removeBook(bookID) {
-      const path = `http://localhost:8081/v1/persons/${bookID}`;
-      axios.delete(path)
+    delete: function (id) {
+      const path = `http://localhost:8081/v1/persons/${id}`;
+      axios
+        .delete(path)
         .then(() => {
-          this.getBooks();
-          this.message = 'Book removed!';
+          this.getList();
+          this.message = "Book removed!";
           this.showMessage = true;
         })
         .catch((error) => {
-          // eslint-disable-next-line
           console.error(error);
-          this.getBooks();
+          this.getList();
         });
     },
   },
 
-  created: function() {
-    this.getBooks();
-  }, 
-
-}
+  created: function () {
+    this.getList();
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -125,6 +125,6 @@ a {
   color: #42b983;
 }
 .hello {
-color: #42b983;
+  color: #42b983;
 }
 </style>
