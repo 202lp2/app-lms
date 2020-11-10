@@ -18,7 +18,7 @@
           </thead>
           <tbody>
             <tr v-for="(d, index) in list" :key="index">
-              <td>{{ d.Name }}</td>
+              <td>{{ d.Name }}{{ d.ID }}</td>
               <td>{{ d.Age }}</td>
 
               <td>
@@ -26,8 +26,8 @@
                   <button
                           type="button"
                           class="btn btn-warning btn-sm"
-                          v-b-modal.book-update-modal
-                          @click="editBook(d)">
+                          
+                          @click="editar(d.ID)">
                       Update
                   </button>
                   <button
@@ -65,7 +65,7 @@ components: {
   },
   methods: {
     editar(id) {
-            this.$router.push('/editar/' + id);
+            this.$router.push('/persons/form/' + id);
         },
         nuevo() {
             this.$router.push('/persons/form');
@@ -82,11 +82,11 @@ components: {
         });
         
     },
-    addBook: function(payload) {
+    addBookx: function(payload) {
       const path = 'http://localhost:8081/books';
       console.log(path+payload);
     },
-    editBook: function(cad) {
+    editBookx: function(cad) {
       console.log("edit "+cad+": "+this.message);
 
     },

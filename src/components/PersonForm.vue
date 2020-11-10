@@ -7,8 +7,7 @@
         <hr><br><br>
         <alert :message=message v-if="showMessage"></alert>
         <button type="button" class="btn btn-success btn-sm" v-on:click="back()">Cancel</button>
-        <br><br>
-        
+        <br><br>ID=        {{ d.ID }}
         <b-form @submit="onSubmit" @reset="onReset" class="w-100">
       <b-form-group id="form-title-group"
                     label="Title:"
@@ -55,6 +54,7 @@ export default {
       message: '',
       showMessage: false,
       d: {
+                "ID": "",
                 "Name": "",
                 "Age": "",
             }
@@ -113,6 +113,7 @@ addBook(payload) {
   },
 
   created: function() {
+    this.d.ID = this.$route.params.id;
     //this.getBooks();
   }, 
 

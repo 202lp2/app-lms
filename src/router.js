@@ -31,6 +31,11 @@ export default new Router({
       name: 'PersonForm',
       component: PersonForm,
     },
+    {
+      path: '/persons/form/:id',
+      name: 'PersonForm',
+      component: PersonForm
+  },
 
   ],
 });
