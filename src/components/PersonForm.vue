@@ -7,9 +7,11 @@
         <hr><br><br>
         <alert :message=message v-if="showMessage"></alert>
         <button type="button" class="btn btn-success btn-sm" v-on:click="back()">Cancel</button>
-        <br><br>ID=        {{ d.ID }}
+        <br><br>ID=   {{ d.ID }}     
         
-          <b-form @submit="onSubmitUpdate" @reset="onResetUpdate" class="w-100">
+        <b-form  @submit="onSubmit" @reset="onReset" class="w-100">
+
+
       <b-form-group id="form-title-group"
                     label="Title:"
                     label-for="form-title-input">
@@ -104,8 +106,12 @@ addBook(payload) {
         name: this.d.Name,
         age: this.d.Age,
       };
-      this.addBook(payload);
-      this.initForm();
+      if (this.d.ID>0) {
+        this.updateBook(payload, this.d.ID);
+     }else {
+        this.addBook(payload);      
+    }
+    this.initForm();
     },
     onReset(evt) {
       evt.preventDefault();
@@ -130,7 +136,7 @@ addBook(payload) {
       evt.preventDefault();
       this.initForm();
     },
-    onSubmitUpdate(evt) {
+    onSubmitUpdatexx(evt) {
       evt.preventDefault();
   const payload = {
         name: this.d.Name,
