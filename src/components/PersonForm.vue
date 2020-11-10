@@ -8,7 +8,8 @@
         <alert :message=message v-if="showMessage"></alert>
         <button type="button" class="btn btn-success btn-sm" v-on:click="back()">Cancel</button>
         <br><br>ID=        {{ d.ID }}
-        <b-form @submit="onSubmit" @reset="onReset" class="w-100">
+        
+          <b-form @submit="onSubmitUpdate" @reset="onResetUpdate" class="w-100">
       <b-form-group id="form-title-group"
                     label="Title:"
                     label-for="form-title-input">
@@ -92,6 +93,7 @@ addBook(payload) {
         });
     },
     initForm() {
+      //this.d.ID = '';
       this.d.Name = '';
       this.d.Age = '';
     },
@@ -123,6 +125,40 @@ addBook(payload) {
         });
         
     },
+
+    onResetUpdate(evt) {
+      evt.preventDefault();
+      this.initForm();
+    },
+    onSubmitUpdate(evt) {
+      evt.preventDefault();
+  const payload = {
+        name: this.d.Name,
+        age: this.d.Age,
+      };
+      
+      this.updateBook(payload, this.d.ID);
+    },
+
+    updateBook(payload, bookID) {
+      const path = `http://localhost:8081/v1/persons/${bookID}`;
+      axios.put(path, payload)
+        .then(() => {
+          console.log(payload);
+        
+          
+          this.message = 'Person added!';
+          this.showMessage = true;
+          this.makeToast("Hecho", "Paciente editado", "success");
+           this.$router.push("/persons"); 
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          //this.getBooks();
+        });
+    },
+
 
 
   },
