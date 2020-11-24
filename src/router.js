@@ -33,29 +33,43 @@ export default new Router({
       name: 'PersonForm',
       component: PersonForm,
       beforeEnter: (to, from, next) => {
-        
+
         console.log("beforeEnter ...")
-        next()
-        //if (to.name !== 'Ping' ) next({ name: 'Ping' })
-        //else next()
+        //next()
+        let isAuthenticated = false;
+        if (localStorage.getItem('user') != null) {
+          isAuthenticated = true;
+        }
+
+        if (to.name !== 'LoginForm' && !isAuthenticated){
+          // next(vm => {
+            // access to component instance via `vm`
+          //  console.log(vm)
+          //  return 'LoginForm' ;
+          //});
+
+          next({ name: 'LoginForm' })
+           //return Promise.resolve(true);
+        }
+        else next({ name: 'PersonForm' })
       }
     },
     {
       path: '/persons/form/:id',
       name: 'PersonForme',
       component: PersonForm
-  },
+    },
 
-  {
-    path: '/login',
-    name: 'LoginForm',
-    component: Login
-  },
-  {
-    path: '/logout',
-    name: 'Logout',
-    component: Logout
-  },
+    {
+      path: '/login',
+      name: 'LoginForm',
+      component: Login
+    },
+    {
+      path: '/logout',
+      name: 'Logout',
+      component: Logout
+    },
 
   ],
 });
