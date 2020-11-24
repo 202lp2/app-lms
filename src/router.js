@@ -61,7 +61,7 @@ router.beforeEach((to, from, next) => {
           isAuthenticated = true;
         }
         
-  if (to.name !== 'LoginForm' && !isAuthenticated) {
+  if (to.name !== 'LoginForm' && to.name !== 'HelloWorld' && to.name !== 'Ping' && !isAuthenticated) {
     next({ name: 'LoginForm' });
     //next();
   } else {
