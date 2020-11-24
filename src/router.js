@@ -9,7 +9,7 @@ import Logout from './components/Logout.vue';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -48,8 +48,9 @@ export default new Router({
           //  return 'LoginForm' ;
           //});
 
-          next({ name: 'LoginForm' })
+          //next({ name: 'LoginForm' })
            //return Promise.resolve(true);
+           next()
         }
         else next({ name: 'PersonForm' })
       }
@@ -73,3 +74,20 @@ export default new Router({
 
   ],
 });
+
+
+router.beforeEach((to, from, next) => {
+  let isAuthenticated = false;
+        if (localStorage.getItem('user') != null) {
+          isAuthenticated = true;
+        }
+        
+  if (to.name !== 'LoginForm' && !isAuthenticated) {
+    next({ name: 'LoginForm' });
+    //next();
+  } else {
+    next();
+  }
+});
+
+export default router
