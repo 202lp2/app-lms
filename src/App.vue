@@ -9,6 +9,7 @@
     <router-link to="/ping">Go to Ping</router-link>
     <router-link to="/persons">Go to Persons</router-link>
     <router-link to="/login">Login</router-link>
+    <router-link to="/logout">Salir</router-link>
   </p>
 
 

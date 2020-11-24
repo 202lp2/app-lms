@@ -41,7 +41,7 @@
               v-model="d.password"
               required
               placeholder="Enter author"
-            >s
+              >s
             </b-form-input>
           </b-form-group>
 
@@ -59,12 +59,10 @@
 import axios from "axios";
 import Alert from "./Alert.vue";
 
-
 export default {
   name: "LoginForm",
   data: function () {
     return {
-      cred: {},
       message: "",
       showMessage: false,
       d: {
@@ -96,10 +94,23 @@ export default {
         .post(path, payload)
         .then((res) => {
           console.log(payload);
-          this.cred= res.data;
-          console.log(this.cred);
-          console.log(this.cred.token);
+          //this.cred = res.data;
+          //console.log(this.cred);
+          //console.log(this.cred.token);
+            console.log('set');
+          let credentials = {
+            "token":res.data.token,
+            "user":res.data,
+          };
+          console.log(credentials.token);
+          //localStorage.setItem("token", credentials.token);
+          localStorage.setItem("user", JSON.stringify(credentials));
 
+          //console.log('get');
+          //let user = JSON.parse(localStorage.getItem("user"));
+          //if (user != null) {
+          //  console.log(user.token);
+          //}
 
           this.message = "Login success!";
           this.showMessage = true;
@@ -122,17 +133,16 @@ export default {
         email: this.d.username,
         password: this.d.password,
       };
-      
-        this.login(payload);
-      
+
+      this.login(payload);
+
       this.initForm();
     },
     onReset: function (evt) {
       evt.preventDefault();
       //this.initForm();
-      evt.target.reset()
+      evt.target.reset();
     },
-
   },
 
   created: function () {

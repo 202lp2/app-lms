@@ -5,6 +5,7 @@ import Ping from './components/Ping.vue';
 import HelloWorld from './components/HelloWorld.vue'
 import PersonForm from './components/PersonForm.vue';
 import Login from './components/Login.vue';
+import Logout from './components/Logout.vue';
 
 Vue.use(Router);
 
@@ -49,6 +50,11 @@ export default new Router({
     path: '/login',
     name: 'LoginForm',
     component: Login
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: Logout
   },
 
   ],
