@@ -32,28 +32,7 @@ const router = new Router({
       path: '/persons/form',
       name: 'PersonForm',
       component: PersonForm,
-      beforeEnter: (to, from, next) => {
-
-        console.log("beforeEnter ...")
-        //next()
-        let isAuthenticated = false;
-        if (localStorage.getItem('user') != null) {
-          isAuthenticated = true;
-        }
-
-        if (to.name !== 'LoginForm' && !isAuthenticated){
-          // next(vm => {
-            // access to component instance via `vm`
-          //  console.log(vm)
-          //  return 'LoginForm' ;
-          //});
-
-          //next({ name: 'LoginForm' })
-           //return Promise.resolve(true);
-           next()
-        }
-        else next({ name: 'PersonForm' })
-      }
+     
     },
     {
       path: '/persons/form/:id',
