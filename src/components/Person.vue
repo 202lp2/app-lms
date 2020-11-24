@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-10">
-        <h1>Persons</h1>
+        <h1>CRUD Persons</h1>
         <hr />
         <br /><br />
         <alert :message="message" v-if="showMessage"></alert>
@@ -52,6 +52,7 @@
 <script>
 import Alert from "./Alert.vue";
 import client from "../api";
+//import { store } from "@/store";
 
 export default {
   name: "Person",
@@ -93,7 +94,7 @@ export default {
         .delete(`/v1/persons/${id}`)
         .then(() => {
           this.getList();
-          this.message = "Book removed!";
+          this.message = "Person removed!";
           this.showMessage = true;
         })
         .catch((error) => {
@@ -104,6 +105,14 @@ export default {
   },
 
   created: function () {
+
+    this.message = this.$route.query.msg;
+    //console.log(this.message);
+
+    if (typeof(this.message) !=='undefined') {// || this.message !== null
+      this.showMessage = true;
+    }
+
     this.getList();
   },
 };

@@ -70,6 +70,7 @@ export default {
         name: "",
         age: "",
       },
+      toastCount: 0
     };
   },
   components: {
@@ -97,10 +98,11 @@ export default {
 
           this.message = "Person added!";
           this.showMessage = true;
-          this.makeToast("Hecho", "Paciente creado", "success");
-          this.$router.push("/persons");
+          this.makeToast("Hecho", "Person creado", "success");
+          this.$router.push("/persons?msg="+this.message);
         })
         .catch((error) => {
+          this.makeToast("Sorry", error, "erro");
           console.log(error);
         });
     },
@@ -146,10 +148,10 @@ export default {
         .then(() => {
           console.log(payload);
 
-          this.message = "Person added!";
+          this.message = "Person updated!";
           this.showMessage = true;
-          this.makeToast("Hecho", "Paciente editado", "success");
-          this.$router.push("/persons");
+          this.makeToast("Hecho", "Person editado", "success");
+          this.$router.push("/persons?msg="+this.message);
         })
         .catch((error) => {
           // eslint-disable-next-line

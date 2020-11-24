@@ -3,8 +3,8 @@
 
   <b-nav>
     <b-nav-item active to="/">Home</b-nav-item>
-    <b-nav-item to="/ping">Go to Ping</b-nav-item>
-    <b-nav-item to="/persons">Go to Persons</b-nav-item>
+    <b-nav-item to="/ping">Ping</b-nav-item>
+    <b-nav-item to="/persons">CRUD Person</b-nav-item>
     <b-nav-item to="/login">Login</b-nav-item>
     <b-nav-item to="/logout">Salir</b-nav-item>
   </b-nav>
