@@ -4,7 +4,8 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
+//import axios from 'axios';
+import client from "../api";
 
 export default {
   name: 'Ping',
@@ -15,8 +16,8 @@ export default {
   },   
   methods: {
     getMessage: function() {
-      const path = 'http://localhost:8081/v1/ping';
-      axios.get(path)
+      //const path = 'http://localhost:8081/v1/ping';
+      client.get('/v1/ping')
         .then((res) => {
           this.msg = res.data;
         })

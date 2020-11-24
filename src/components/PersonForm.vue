@@ -56,38 +56,13 @@
 </template>
 
 <script>
-import axios from "axios";
-//import store from 'your/store/path/store'
 import Alert from "./Alert.vue";
-
-//var tokent ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2MDYyMjM1MTQsIm1pbyI6ImhvbGEiLCJ1c2VyX2lkIjoiMTkwZGE1N2MtNjk4YS00NTg4LWFlMDItZmI4MmUwZDllNTIzIn0.8_-CN2MbixtEmRcwIsTSg6wTFXRj8QkPgFl3hSI9XCk';
-axios.interceptors.request.use(
-  function (config) {
-    console.log("get");
-    let token = '';
-    let user = JSON.parse(localStorage.getItem("user"));
-    if (localStorage.getItem('user') != null ) {
-      console.log(user.token);
-      console.log(user);
-      token = user.token; //store.getters.token;
-    }
-
-    //let token = user.token+''; //store.getters.token;
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  function (err) {
-    return Promise.reject(err);
-  }
-);
+import client from "../api";
 
 export default {
   name: "PersonForm",
   data: function () {
     return {
-      list: [],
       message: "",
       showMessage: false,
       d: {
@@ -115,9 +90,8 @@ export default {
     },
 
     create: function (payload) {
-      const path = "http://localhost:8081/v1/persons";
-      axios
-        .post(path, payload)
+      client
+        .post("/v1/persons", payload)
         .then(() => {
           console.log(payload);
 
@@ -156,23 +130,19 @@ export default {
     },
 
     getById: function (id) {
-      const path = "http://localhost:8081/v1/persons/" + id;
-      console.log(path);
-      axios
-        .get(path)
+      client
+        .get(`/v1/persons/${id}`)
         .then((res) => {
           this.d = res.data;
         })
         .catch((error) => {
-          // eslint-disable-next-line
           console.error(error);
         });
     },
 
     update: function (payload, id) {
-      const path = `http://localhost:8081/v1/persons/${id}`;
-      axios
-        .put(path, payload)
+      client
+        .put(`/v1/persons/${id}`, payload)
         .then(() => {
           console.log(payload);
 

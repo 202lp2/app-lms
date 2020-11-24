@@ -32,7 +32,7 @@ const router = new Router({
       path: '/persons/form',
       name: 'PersonForm',
       component: PersonForm,
-     
+
     },
     {
       path: '/persons/form/:id',
@@ -56,17 +56,17 @@ const router = new Router({
 
 
 router.beforeEach((to, from, next) => {
+  console.log(`${from.path} to ${to.path}`);
   let isAuthenticated = false;
-        if (localStorage.getItem('user') != null) {
-          isAuthenticated = true;
-        }
-        
+  if (localStorage.getItem('user') != null) {
+    isAuthenticated = true;
+  }
+
   if (to.name !== 'LoginForm' && to.name !== 'HelloWorld' && to.name !== 'Ping' && !isAuthenticated) {
     next({ name: 'LoginForm' });
-    //next();
   } else {
     next();
   }
 });
-
+//https://www.digitalocean.com/community/tutorials/vuejs-advanced-vue-routing
 export default router

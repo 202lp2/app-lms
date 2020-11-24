@@ -56,8 +56,8 @@
 </template>
 
 <script>
-import axios from "axios";
 import Alert from "./Alert.vue";
+import client from "../api";
 
 export default {
   name: "LoginForm",
@@ -89,21 +89,17 @@ export default {
     },
 
     login: function (payload) {
-      const path = "http://localhost:8081/v1/login";
-      axios
-        .post(path, payload)
+      client
+        .post("/v1/login", payload)
         .then((res) => {
           console.log(payload);
-          //this.cred = res.data;
-          //console.log(this.cred);
-          //console.log(this.cred.token);
-            console.log('set');
+
+          // console.log('set');
           let credentials = {
             "token":res.data.token,
             "user":res.data,
           };
-          console.log(credentials.token);
-          //localStorage.setItem("token", credentials.token);
+          //console.log(credentials.token);
           localStorage.setItem("user", JSON.stringify(credentials));
 
           //console.log('get');

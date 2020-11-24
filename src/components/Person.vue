@@ -50,8 +50,8 @@
 </template>
 
 <script>
-import axios from "axios";
 import Alert from "./Alert.vue";
+import client from "../api";
 
 export default {
   name: "Person",
@@ -73,9 +73,8 @@ export default {
       this.$router.push("/persons/form");
     },
     getList: function () {
-      const path = "http://localhost:8081/v1/persons";
-      axios
-        .get(path)
+      client
+        .get("/v1/persons")
         .then((res) => {
           this.list = res.data.r;
         })
@@ -84,15 +83,14 @@ export default {
         });
     },
     onDelete: function (d) {
-          var r = confirm("Eliminar ?");
-          if (r == true) {
-            this.delete(d.ID);
-          }
+      var r = confirm("Eliminar ?");
+      if (r == true) {
+        this.delete(d.ID);
+      }
     },
     delete: function (id) {
-      const path = `http://localhost:8081/v1/persons/${id}`;
-      axios
-        .delete(path)
+      client
+        .delete(`/v1/persons/${id}`)
         .then(() => {
           this.getList();
           this.message = "Book removed!";
