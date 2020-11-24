@@ -24,7 +24,7 @@
             <b-form-input
               id="form-title-input"
               type="text"
-              v-model="d.Name"
+              v-model="d.name"
               required
               placeholder="Enter title"
             >
@@ -38,7 +38,7 @@
             <b-form-input
               id="form-author-input"
               type="text"
-              v-model="d.Age"
+              v-model="d.age"
               required
               placeholder="Enter author"
             >
@@ -67,8 +67,8 @@ export default {
       showMessage: false,
       d: {
         ID: "",
-        Name: "",
-        Age: "",
+        name: "",
+        age: "",
       },
     };
   },
@@ -107,15 +107,15 @@ export default {
     },
     initForm: function () {
       //this.d.ID = '';
-      this.d.Name = "";
-      this.d.Age = "";
+      this.d.name = "";
+      this.d.age = "";
     },
     onSubmit: function (evt) {
       evt.preventDefault();
 
       const payload = {
-        name: this.d.Name,
-        age: this.d.Age,
+        name: this.d.name,
+        age: this.d.age,
       };
       if (this.d.ID > 0) {
         this.update(payload, this.d.ID);

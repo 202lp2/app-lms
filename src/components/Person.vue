@@ -20,8 +20,8 @@
           </thead>
           <tbody>
             <tr v-for="(d, index) in list" :key="index">
-              <td>{{ d.Name }} - {{ d.ID }}</td>
-              <td>{{ d.Age }}</td>
+              <td>{{ d.name }} - {{ d.ID }}</td>
+              <td>{{ d.age }}</td>
 
               <td>
                 <div class="btn-group" role="group">
