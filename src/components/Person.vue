@@ -84,7 +84,10 @@ export default {
         });
     },
     onDelete: function (d) {
-      this.delete(d.ID);
+          var r = confirm("Eliminar ?");
+          if (r == true) {
+            this.delete(d.ID);
+          }
     },
     delete: function (id) {
       const path = `http://localhost:8081/v1/persons/${id}`;

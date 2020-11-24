@@ -59,7 +59,7 @@
 import axios from "axios";
 import Alert from "./Alert.vue";
 export default {
-  name: "Person",
+  name: "PersonForm",
   data: function () {
     return {
       list: [],
@@ -126,7 +126,8 @@ export default {
     },
     onReset: function (evt) {
       evt.preventDefault();
-      this.initForm();
+      //this.initForm();
+      evt.target.reset()
     },
 
     getById: function (id) {
