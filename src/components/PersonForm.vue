@@ -57,7 +57,19 @@
 
 <script>
 import axios from "axios";
+//import store from 'your/store/path/store'
 import Alert from "./Alert.vue";
+var tokent ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2MDYyMjM1MTQsIm1pbyI6ImhvbGEiLCJ1c2VyX2lkIjoiMTkwZGE1N2MtNjk4YS00NTg4LWFlMDItZmI4MmUwZDllNTIzIn0.8_-CN2MbixtEmRcwIsTSg6wTFXRj8QkPgFl3hSI9XCk';
+axios.interceptors.request.use(function(config) {
+        const token = tokent; //store.getters.token;
+        if(token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    }, function(err) {
+        return Promise.reject(err);
+    });
+
 export default {
   name: "PersonForm",
   data: function () {

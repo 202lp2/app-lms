@@ -30,6 +30,13 @@ export default new Router({
       path: '/persons/form',
       name: 'PersonForm',
       component: PersonForm,
+      beforeEnter: (to, from, next) => {
+        
+        console.log("beforeEnter ...")
+        next()
+        //if (to.name !== 'Ping' ) next({ name: 'Ping' })
+        //else next()
+      }
     },
     {
       path: '/persons/form/:id',
