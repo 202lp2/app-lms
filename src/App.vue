@@ -8,6 +8,7 @@
     <router-link to="/">Home</router-link>
     <router-link to="/ping">Go to Ping</router-link>
     <router-link to="/persons">Go to Persons</router-link>
+    <router-link to="/login">Login</router-link>
   </p>
 
 
