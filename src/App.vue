@@ -1,19 +1,17 @@
 <template>
-  <div class="appx">
+  <div>
 
-  <p>
-    <!-- use router-link component for navigation. -->
-    <!-- specify the link by passing the `to` prop. -->
-    <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
-    <router-link to="/">Home</router-link>
-    <router-link to="/ping">Go to Ping</router-link>
-    <router-link to="/persons">Go to Persons</router-link>
-    <router-link to="/login">Login</router-link>
-    <router-link to="/logout">Salir</router-link>
-  </p>
-
+  <b-nav>
+    <b-nav-item active to="/">Home</b-nav-item>
+    <b-nav-item to="/ping">Go to Ping</b-nav-item>
+    <b-nav-item to="/persons">Go to Persons</b-nav-item>
+    <b-nav-item to="/login">Login</b-nav-item>
+    <b-nav-item to="/logout">Salir</b-nav-item>
+  </b-nav>
+  <b-container fluid>
 
     <router-view/>
+    </b-container >
   </div>
 </template>
 

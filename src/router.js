@@ -54,6 +54,11 @@ const router = new Router({
   ],
 });
 
+let whiteRoutes = [
+  "LoginForm",
+  "HelloWorld",
+  "Ping"
+]
 
 router.beforeEach((to, from, next) => {
   console.log(`${from.path} to ${to.path}`);
@@ -61,8 +66,8 @@ router.beforeEach((to, from, next) => {
   if (localStorage.getItem('user') != null) {
     isAuthenticated = true;
   }
-
-  if (to.name !== 'LoginForm' && to.name !== 'HelloWorld' && to.name !== 'Ping' && !isAuthenticated) {
+  // if (to.name !== 'LoginForm' && to.name !== 'HelloWorld' && to.name !== 'Ping' && !isAuthenticated) {
+  if (!whiteRoutes.includes(to.name) && !isAuthenticated) {
     next({ name: 'LoginForm' });
   } else {
     next();
