@@ -70,22 +70,14 @@ export default {
         name: "",
         age: "",
       },
-      toastCount: 0
+
     };
   },
   components: {
     alert: Alert,
   },
   methods: {
-    makeToast: function (titulo, texto, tipo) {
-      this.toastCount++;
-      this.$bvToast.toast(texto, {
-        title: titulo,
-        variant: tipo,
-        autoHideDelay: 5000,
-        appendToast: true,
-      });
-    },
+    
     back: function () {
       this.$router.push("/persons");
     },
@@ -98,7 +90,6 @@ export default {
 
           this.message = "Person added!";
           this.showMessage = true;
-          this.makeToast("Hecho", "Person creado", "success");
           this.$router.push("/persons?msg="+this.message);
         })
         .catch((error) => {
@@ -150,7 +141,6 @@ export default {
 
           this.message = "Person updated!";
           this.showMessage = true;
-          this.makeToast("Hecho", "Person editado", "success");
           this.$router.push("/persons?msg="+this.message);
         })
         .catch((error) => {

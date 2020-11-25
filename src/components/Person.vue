@@ -3,6 +3,7 @@
     <div class="row">
       <div class="col-sm-10">
         <h1>CRUD Persons</h1>
+
         <hr />
         <br /><br />
         <alert :message="message" v-if="showMessage"></alert>
@@ -52,7 +53,6 @@
 <script>
 import Alert from "./Alert.vue";
 import client from "../api";
-//import { store } from "@/store";
 
 export default {
   name: "Person",
@@ -111,6 +111,7 @@ export default {
 
     if (typeof(this.message) !=='undefined') {// || this.message !== null
       this.showMessage = true;
+     // this.makeToast("Hecho", this.message, "success");
     }
 
     this.getList();

@@ -1,5 +1,7 @@
 import axios from "axios";
-
+//import Vue from 'vue';
+//import Toast from 'bootstrap-vue';
+//Vue.use(Toast);
 /**
  * Create a new Axios client instance
  * @see https://github.com/mzabriskie/axios#creating-an-instance
@@ -35,8 +37,20 @@ const getClient = (baseUrl = null) => {
     }
   );
 
+  /*client.interceptors.response.use(r => r, (error) => {
+    console.log(Vue.prototype);
+    Vue.prototype.$bvToast.toast(`Server call returned error ${error.response.status}`, {
+      title: 'Error',
+      variant: 'error',
+    });
+    return Promise.reject(error);
+  });*/
+
+
   return client;
 };
+
+
 
 
 

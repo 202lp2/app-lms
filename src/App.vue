@@ -8,7 +8,7 @@
     <b-nav-item to="/login">Login</b-nav-item>
     <b-nav-item to="/logout">Salir</b-nav-item>
   </b-nav>
-  <b-container fluid>
+  <b-container >
 
     <router-view/>
     </b-container >
