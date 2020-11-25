@@ -93,7 +93,8 @@ export default {
           this.$router.push("/persons?msg="+this.message);
         })
         .catch((error) => {
-          this.makeToast("Sorry", error, "erro");
+          this.message = error;
+          this.showMessage = true;
           console.log(error);
         });
     },
@@ -129,6 +130,8 @@ export default {
           this.d = res.data;
         })
         .catch((error) => {
+          this.message = error;
+          this.showMessage = true;
           console.error(error);
         });
     },
@@ -144,7 +147,8 @@ export default {
           this.$router.push("/persons?msg="+this.message);
         })
         .catch((error) => {
-          // eslint-disable-next-line
+          this.message = error;
+          this.showMessage = true;
           console.error(error);
           //this.getBooks();
         });
